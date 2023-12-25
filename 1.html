@@ -1,0 +1,48 @@
+<html>
+<head>
+ <style>
+    .container {
+      position: relative;
+      width: 300px;
+      height: 200px;
+      
+    }
+    .image {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      opacity: 0;
+      transition: opacity 0.5s;
+    }
+    .image.active {
+      opacity: 1;
+    }
+ </style>
+</head>
+<body>
+ <div class="container">
+    <img class="image active" src="img/2.jpg" alt="">
+    <img class="image" src="img/3.jpg" alt="">
+    <img class="image" src="img/4.jpg" alt="">
+ </div>
+ <button id="changeImage">Change Image</button>
+ <script>
+    const container = document.querySelector('.container');
+    const images = document.querySelectorAll('.image');
+    let activeImageIndex = 0;
+
+    function changeImage() {
+      images[activeImageIndex].classList.remove('active');
+      activeImageIndex++;
+      if (activeImageIndex >= images.length) {
+        activeImageIndex = 0;
+      }
+      images[activeImageIndex].classList.add('active');
+    }
+
+    changeImage();
+    document.getElementById('changeImage').addEventListener('click', changeImage);
+ </script>
+</body>
+</html>
